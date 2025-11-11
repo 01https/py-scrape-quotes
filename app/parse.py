@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import csv
+import time
 import requests
 from bs4 import BeautifulSoup, Tag
 
@@ -38,6 +39,7 @@ def get_all_quotes() -> list[Quote]:
     url = BASE_URL
 
     while url:
+        time.sleep(1)
         response = requests.get(url)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
